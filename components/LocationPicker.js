@@ -3,6 +3,7 @@ import { View, Button, Text, ActivityIndicator, Alert, StyleSheet } from "react-
 import Colors from "../constants/Colors";
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
+import MapPreview from "./MapPreview";
 
 const LocationPicker = props => {
   const [isFetching, setIsFetching] = useState(false);
@@ -39,9 +40,11 @@ const LocationPicker = props => {
 
   return (
     <View style={styles.LocationPicker}>
-      <View style={styles.mapPreview}>
-        {isFetching ? <ActivityIndicator size="large" color={Colors.primary} /> : <Text>No location chosen yet</Text>}
-      </View>
+      <MapPreview style={styles.mapPreview} location={pickedLocation}>
+        <View style={styles.mapPreview}>
+          {isFetching ? <ActivityIndicator size="large" color={Colors.primary} /> : <Text>No location chosen yet</Text>}
+        </View>
+      </MapPreview>
       <Button title="Get user location" color={Colors.primary} onPress={getLocationHandler} />
     </View>
   );
@@ -57,8 +60,7 @@ const styles = StyleSheet.create({
     height: 150,
     borderColor: "#ccc",
     borderWidth: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    
   }
 });
 
