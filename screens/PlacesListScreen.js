@@ -19,7 +19,7 @@ const PlacesListScreen = props => {
       data={places} 
       keyExtractor={item => item.id} 
       renderItem={itemData => (
-        <PlaceItem image={itemData.item.imageUri} title={itemData.item.title} address={null} onSelect={() => {
+        <PlaceItem image={itemData.item.imageUri} title={itemData.item.title} address={itemData.item.address} onSelect={() => {
           props.navigation.navigate('PlaceDetail', {
             placeTitle: itemData.item.title, 
             placeId: itemData.item.id
@@ -28,6 +28,7 @@ const PlacesListScreen = props => {
       )}
     />
   );
+
 };
 
 PlacesListScreen.navigationOptions = navData => {
@@ -44,6 +45,8 @@ PlacesListScreen.navigationOptions = navData => {
    };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+
+});
 
 export default PlacesListScreen;
